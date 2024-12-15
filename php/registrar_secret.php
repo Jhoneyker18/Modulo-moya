@@ -13,70 +13,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] != '123456789') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Secretarias</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: row;
-            background-color: #f5f5f5;
-        }
-
-        .vertical-menu {
-            width: 250px;
-            background-color: #004080;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-        }
-
-        .vertical-menu a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 18px;
-            border-bottom: 1px solid #003366;
-            transition: background 0.3s ease;
-        }
-
-        .vertical-menu a:hover {
-            background-color: #ffa726;
-        }
-
-        .vertical-menu a.active {
-            background-color: #ffa726;
-            font-weight: bold;
-        }
-
-        .content {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .button {
-            background-color: #004080;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            text-decoration: none;
-        }
-
-        .button:hover {
-            background-color: #ffa726;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style_registrar_secret.css">
 </head>
 <body>
 

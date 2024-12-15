@@ -17,77 +17,7 @@ $secretarias = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestionar Secretarias</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: row;
-            background-color: #f5f5f5;
-        }
-
-        .vertical-menu {
-            width: 250px;
-            background-color: #004080;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-        }
-
-        .vertical-menu a {
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 18px;
-            border-bottom: 1px solid #003366;
-            transition: background 0.3s ease;
-        }
-
-        .vertical-menu a:hover {
-            background-color: #ffa726;
-        }
-
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #004080;
-            color: white;
-        }
-
-        .btn {
-            padding: 5px 10px;
-            background-color: #ffa726;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background-color: #e67e22;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style_gestionar_secretaria.css">
 </head>
 <body>
 
