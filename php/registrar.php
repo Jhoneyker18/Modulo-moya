@@ -100,6 +100,7 @@
         <a href="admin.php" class="active">Inicio</a>
         <a href="panel.php">Insertar Planilla</a>
         <a href="registrar.php">Registrar Estudiante</a>
+        <a href="certificado.php">Certificado Planilla</a>
         <a href="index.php">Cerrar Sesión</a>
     </div>
 

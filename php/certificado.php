@@ -132,96 +132,43 @@
         <a href="admin.php" class="active">Inicio</a>
         <a href="panel.php">Insertar Planilla</a>
         <a href="registrar.php">Registrar Estudiante</a>
-        <a href="certificado.php">Certificado Planilla</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 
     <!-- Contenido principal -->
     <div class="main-content">
         <h1>Insertar los datos del pasante</h1>
-        <form method="POST" action="pdf.php" target="_blank">
-    <!-- Campos existentes -->
-    <label for="cedula">Cédula:</label>
-    <input type="text" id="cedula" name="cedula" onblur="fetchUserData()" required>
+        <form method="POST" action="certificado_de_pasantia_pdf.php" target="_blank">
+            <label for="cedula">Cédula:</label>
+            <input type="text" id="cedula" name="cedula" onblur="fetchUserData()" required>
 
-    <label for="carrera">Carrera:</label>
-    <select id="carrera" name="carrera" required>
-        <option value="turismo">Turismo</option>
-        <option value="informatica">Informática</option>
-        <option value="publicidad">Publicidad</option>
-        <option value="administracion">Administración</option>
-    </select>
+            <label for="carrera">Carrera:</label>
+            <select id="carrera" name="carrera" required>
+                <option value="turismo">Turismo</option>
+                <option value="informatica">Informática</option>
+                <option value="publicidad">Publicidad</option>
+                <option value="administracion">Administración</option>
+            </select>
 
-    <label for="empresa">Empresas recomendadas:</label>
-    <select id="empresa" name="empresa" required>
-        <option value="Tech Solutions">Tech Solutions</option>
-        <option value="EcoTurismo">EcoTurismo</option>
-        <option value="Publicidad Creativa">Publicidad Creativa</option>
-        <option value="Innova Administración">Innova Administración</option>
-    </select>
+            <label for="empresa">Empresas recomendadas:</label>
+            <select id="empresa" name="empresa" required>
+                <option value="Tech Solutions">Tech Solutions</option>
+                <option value="EcoTurismo">EcoTurismo</option>
+                <option value="Publicidad Creativa">Publicidad Creativa</option>
+                <option value="Innova Administración">Innova Administración</option>
+            </select>
 
-    <label for="nombre">Nombres:</label>
-    <input type="text" id="nombre" name="nombre" required>
+            <label for="nombre">Nombres:</label>
+            <input type="text" id="nombre" name="nombre" required>
 
-    <label for="apellido">Apellidos:</label>
-    <input type="text" id="apellido" name="apellido" required>
-
-    <label for="email">Correo Electrónico:</label>
-    <input type="email" id="email" name="email" required>
-
-    <!-- Botones -->
-    <button type="submit">Solicitar Planilla</button>
+            <label for="apellido">Apellidos:</label>
+            <input type="text" id="apellido" name="apellido" required>
 
 
 
-</form>
-
-<h1>Enviar A Correo</h1>
-<form method="POST" action="enviar_planilla.php" target="_blank">
-    <label for="cedula">Cédula:</label>
-    <input type="text" id="cedula" name="cedula" onblur="fetchUserData()" required>
-
-    <label for="carrera">Carrera:</label>
-    <select id="carrera" name="carrera" required>
-        <option value="turismo">Turismo</option>
-        <option value="informatica">Informática</option>
-        <option value="publicidad">Publicidad</option>
-        <option value="administracion">Administración</option>
-    </select>
-
-    <label for="empresa">Empresas recomendadas:</label>
-    <select id="empresa" name="empresa" required>
-        <option value="Tech Solutions">Tech Solutions</option>
-        <option value="EcoTurismo">EcoTurismo</option>
-        <option value="Publicidad Creativa">Publicidad Creativa</option>
-        <option value="Innova Administración">Innova Administración</option>
-        <option value="Digital Marketing Pro">Digital Marketing Pro</option>
-    </select>
-
-    <label for="nombre">Nombres:</label>
-    <input type="text" id="nombre" name="nombre" required>
-
-    <label for="apellido">Apellidos:</label>
-    <input type="text" id="apellido" name="apellido" required>
-
-    <label for="email">Correo Electrónico:</label>
-    <input type="email" id="email" name="email" required>
-
-    <!-- Botón para enviar el formulario -->
-    <button type="submit">Enviar Planilla</button>
-</form>
-
-
-
+            <!-- Botones -->
+            <button type="submit">Solicitar Planilla</button>
+        </form>
     </div>
-
-    <script>
-    function enviarPlanilla() {
-        const form = document.querySelector('form');
-        form.action = 'enviar_planilla.php';
-        form.target = ''; // Enviar en la misma pestaña
-        form.submit();
-    }
-</script>
 </body>
 </html>
