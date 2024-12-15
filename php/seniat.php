@@ -130,7 +130,7 @@
         <a href="admin.php" class="active">Inicio</a>
         <a href="panel.php">Insertar Planilla</a>
         <a href="registrar.php">Registrar Estudiante</a>
-        <a href="registrar_secret.php" class="active">Gestión de Secretarias</a>
+        <a href="registrar_secret.php">Gestión de Secretarias</a>
         <a href="certificado.php">Certificado Planilla</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
