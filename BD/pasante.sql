@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 08, 2024 at 09:38 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 15-12-2024 a las 04:09:39
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pasante`
+-- Base de datos: `pasante`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresas`
+-- Estructura de tabla para la tabla `empresas`
 --
 
 CREATE TABLE `empresas` (
@@ -33,10 +33,10 @@ CREATE TABLE `empresas` (
   `nombre` varchar(100) NOT NULL,
   `ubicacion` varchar(150) NOT NULL,
   `descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `empresas`
+-- Volcado de datos para la tabla `empresas`
 --
 
 INSERT INTO `empresas` (`id`, `rif`, `nombre`, `ubicacion`, `descripcion`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `empresas` (`id`, `rif`, `nombre`, `ubicacion`, `descripcion`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `internships`
+-- Estructura de tabla para la tabla `internships`
 --
 
 CREATE TABLE `internships` (
@@ -59,12 +59,12 @@ CREATE TABLE `internships` (
   `estado` enum('pendiente','aceptado','rechazado','cambio_solicitado') DEFAULT 'pendiente',
   `nueva_empresa` text DEFAULT NULL,
   `motivo_cambio` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasantias`
+-- Estructura de tabla para la tabla `pasantias`
 --
 
 CREATE TABLE `pasantias` (
@@ -73,12 +73,34 @@ CREATE TABLE `pasantias` (
   `empresa_id` int(11) DEFAULT NULL,
   `estado` enum('pendiente','confirmada','rechazada') NOT NULL DEFAULT 'pendiente',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `secretarias`
+--
+
+CREATE TABLE `secretarias` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `cedula` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `secretarias`
+--
+
+INSERT INTO `secretarias` (`id`, `nombre`, `cedula`, `email`, `password`, `created_at`) VALUES
+(1, 'Deivis Cuadros', '31657336', 'casticj679@gmail.com', '$2y$10$eKTyEC9XN5iuKhVjwalkMOu/oahn7IPM.mrRxuZKK15tbylKjZvC.', '2024-12-15 02:53:19');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -91,10 +113,10 @@ CREATE TABLE `users` (
   `apellidos` varchar(50) NOT NULL,
   `turno` enum('mañana','noche','sabado') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `cedula`, `password`, `email`, `carrera`, `nombres`, `apellidos`, `turno`, `created_at`) VALUES
@@ -109,32 +131,40 @@ INSERT INTO `users` (`id`, `cedula`, `password`, `email`, `carrera`, `nombres`, 
 (9, '28180479', '$2y$10$sCOvRwwNFLAicwar3a2Nq.dlyuNkr9QJXV.YZeCCI490448mgkCZ6', 'jhoneykercorrea@gmail.com', 'informatica', 'Jhoneyker', 'Correa', 'noche', '2024-12-08 07:04:46');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `empresas`
+-- Indices de la tabla `empresas`
 --
 ALTER TABLE `empresas`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `rif` (`rif`);
 
 --
--- Indexes for table `internships`
+-- Indices de la tabla `internships`
 --
 ALTER TABLE `internships`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `pasantias`
+-- Indices de la tabla `pasantias`
 --
 ALTER TABLE `pasantias`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cedula` (`cedula`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `secretarias`
+--
+ALTER TABLE `secretarias`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cedula` (`cedula`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -142,45 +172,51 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `empresas`
+-- AUTO_INCREMENT de la tabla `empresas`
 --
 ALTER TABLE `empresas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `internships`
+-- AUTO_INCREMENT de la tabla `internships`
 --
 ALTER TABLE `internships`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pasantias`
+-- AUTO_INCREMENT de la tabla `pasantias`
 --
 ALTER TABLE `pasantias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `secretarias`
+--
+ALTER TABLE `secretarias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `internships`
+-- Filtros para la tabla `internships`
 --
 ALTER TABLE `internships`
   ADD CONSTRAINT `internships_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `pasantias`
+-- Filtros para la tabla `pasantias`
 --
 ALTER TABLE `pasantias`
   ADD CONSTRAINT `pasantias_ibfk_1` FOREIGN KEY (`cedula`) REFERENCES `users` (`cedula`);

@@ -18,8 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: profesor.php");
         exit;
     }
+
+
+
     
-    
+    $stmt = $pdo->prepare("SELECT * FROM secretarias WHERE cedula = ?");
     $stmt = $pdo->prepare("SELECT * FROM users WHERE cedula = ?");
     $stmt->execute([$cedula]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,6 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     } else {
         $error = "Cédula o contraseña incorrecta.";
+    }
+
+    if ($secretaria && password_verify($password, $secretaria['password'])) {
+        header("Location: home_secretaria.php");
+        exit;
     }
 }
 ?>
