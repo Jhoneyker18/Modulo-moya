@@ -146,6 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="header">
         <img src="3.png" alt="Logo"> 
         <h1>Proceso de Inscripción de Pasantes</h1>
+        <h2>prueba de git</h2>
     </div>
 
     <div class="login-container">
