@@ -82,10 +82,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] != '123456789') {
 
     <!-- Barra lateral -->
     <div class="vertical-menu">
-        <a href="admin.php">Inicio</a>
+        <a href="admin.php" class="active">Inicio</a>
         <a href="panel.php">Insertar Planilla</a>
-        <a href="registrar_secret.php" class="active">Gestión de Secretarias</a>
         <a href="registrar.php">Registrar Estudiante</a>
+        <a href="registrar_secret.php" class="active">Gestión de Secretarias</a>
+        <a href="certificado.php">Certificado Planilla</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 

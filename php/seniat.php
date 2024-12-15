@@ -126,11 +126,13 @@
     </script>
 </head>
 <body>
-    <div class="vertical-menu">
+<div class="vertical-menu">
         <a href="admin.php" class="active">Inicio</a>
         <a href="panel.php">Insertar Planilla</a>
         <a href="registrar.php">Registrar Estudiante</a>
-        <a href="index.php">Cerrar Sesión</a>
+        <a href="registrar_secret.php" class="active">Gestión de Secretarias</a>
+        <a href="certificado.php">Certificado Planilla</a>
+        <a href="logout.php">Cerrar Sesión</a>
     </div>
 
     <div class="main-content">
