@@ -10,6 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] != '123456789') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cedula = trim($_POST['cedula']);
+    $codigo = trim($_POST['codigo']);
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
     $email = trim($_POST['email']);
@@ -17,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombres = trim($_POST['nombres']);
     $apellidos = trim($_POST['apellidos']);
     $turno = trim($_POST['turno']);
+    $telefono = trim($_POST['telefono']);
 
     // Validaciones
     if ($password !== $confirm_password) {
@@ -34,18 +36,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         
         $stmt = $pdo->prepare("
-            INSERT INTO users (cedula, password, email, carrera, nombres, apellidos, turno) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ");
-        $stmt->execute([
-            $cedula,
-            password_hash($password, PASSWORD_DEFAULT), // Encriptar contraseña
-            $email,
-            $carrera,
-            $nombres,
-            $apellidos,
-            $turno,
-        ]);
+    INSERT INTO users (cedula, password, email, carrera, nombres, apellidos, turno, codigo, telefono) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+");
+$stmt->execute([
+    $cedula,
+    password_hash($password, PASSWORD_DEFAULT), // Encriptar contraseña
+    $email,
+    $carrera,
+    $nombres,
+    $apellidos,
+    $turno,
+    $codigo,
+    $telefono,
+
+]);
+
 
         
         header("Location: admin.php?success=1");

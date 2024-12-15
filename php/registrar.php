@@ -23,7 +23,10 @@
         <h2>Registrar Estudiante</h2>
         <form method="POST" action="register_student.php">
             <label for="cedula">Cédula:</label>
-            <input type="text" id="cedula" name="cedula" required>
+            <input type="number" id="cedula" name="cedula" required>
+            <br>
+            <label for="codigo">Codigo del estudiante :</label>
+            <input type="number" id="codigo" name="codigo" required>
             <br>
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>
@@ -63,6 +66,9 @@
                 <option value="noche">Noche</option>
                 <option value="sabado">Sábados</option>
             </select>
+            <br>
+            <label for="telefono">Numero de telefono :</label>
+            <input type="telefono" id="telefono" name="telefono" required>
             <br>
             <button type="submit">Registrar Estudiante</button>
         </form>

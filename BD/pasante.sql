@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-12-2024 a las 04:09:39
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.0.19
+-- Host: 127.0.0.1
+-- Generation Time: Dec 15, 2024 at 07:54 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pasante`
+-- Database: `pasante`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empresas`
+-- Table structure for table `empresas`
 --
 
 CREATE TABLE `empresas` (
@@ -33,10 +33,10 @@ CREATE TABLE `empresas` (
   `nombre` varchar(100) NOT NULL,
   `ubicacion` varchar(150) NOT NULL,
   `descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `empresas`
+-- Dumping data for table `empresas`
 --
 
 INSERT INTO `empresas` (`id`, `rif`, `nombre`, `ubicacion`, `descripcion`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `empresas` (`id`, `rif`, `nombre`, `ubicacion`, `descripcion`) VALUE
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `internships`
+-- Table structure for table `internships`
 --
 
 CREATE TABLE `internships` (
@@ -59,12 +59,12 @@ CREATE TABLE `internships` (
   `estado` enum('pendiente','aceptado','rechazado','cambio_solicitado') DEFAULT 'pendiente',
   `nueva_empresa` text DEFAULT NULL,
   `motivo_cambio` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pasantias`
+-- Table structure for table `pasantias`
 --
 
 CREATE TABLE `pasantias` (
@@ -73,12 +73,12 @@ CREATE TABLE `pasantias` (
   `empresa_id` int(11) DEFAULT NULL,
   `estado` enum('pendiente','confirmada','rechazada') NOT NULL DEFAULT 'pendiente',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `secretarias`
+-- Table structure for table `secretarias`
 --
 
 CREATE TABLE `secretarias` (
@@ -88,19 +88,20 @@ CREATE TABLE `secretarias` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `secretarias`
+-- Dumping data for table `secretarias`
 --
 
 INSERT INTO `secretarias` (`id`, `nombre`, `cedula`, `email`, `password`, `created_at`) VALUES
-(1, 'Deivis Cuadros', '31657336', 'casticj679@gmail.com', '$2y$10$eKTyEC9XN5iuKhVjwalkMOu/oahn7IPM.mrRxuZKK15tbylKjZvC.', '2024-12-15 02:53:19');
+(1, 'Deivis Cuadros', '31657336', 'casticj679@gmail.com', '$2y$10$eKTyEC9XN5iuKhVjwalkMOu/oahn7IPM.mrRxuZKK15tbylKjZvC.', '2024-12-15 02:53:19'),
+(4, 'maria', '30150789', 'nata@gmail.com', '$2y$10$1QQK1KFKflkoXoM6OEF7.eH80b8P79jvDPPaIsTe.ICFPCmm7wgUu', '2024-12-15 16:02:18');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -112,51 +113,55 @@ CREATE TABLE `users` (
   `nombres` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `turno` enum('mañana','noche','sabado') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `codigo` int(11) NOT NULL,
+  `telefono` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `cedula`, `password`, `email`, `carrera`, `nombres`, `apellidos`, `turno`, `created_at`) VALUES
-(1, '31657336', '$2y$10$HsVZtcwmUCv7T.J1R/5HgOvMMfh7xG/9Znhzj28SN6.Dq9yAJRL4q', 'cristianjcastilloa11@gmail.com', 'informatica', 'Cristian Jesus', 'Castillo Alvarado', 'noche', '2024-12-07 03:06:45'),
-(2, '12636266', '$2y$10$AdTzzMjuGb2IA9FIX3B6l.nk.Mfp1NybOuZOHjFz4A/2WG.Hdz8KW', 'marisela@gmail.com', 'turismo', 'marisela', 'alvarado rondon', '', '2024-12-07 03:28:58'),
-(3, '11194889', '$2y$10$h9szyIWKVcDXyhwP2NrBEu2v01/SKj92ltNjnAfJIwgybfmSovxp6', 'casticj679@gmail.com', 'administracion', 'julio cesar', 'Castillo garcia', 'noche', '2024-12-07 03:35:34'),
-(4, '301116677', '$2y$10$bYTymXI3aJFQVX59F12P/eBq4Hl9NIfl299ZLl7wdjxJ7HZe3nA0u', 'jhonge@gmail.con', 'turismo', 'jhogny', '3243242', 'noche', '2024-12-07 14:33:10'),
-(5, '10782818', '$2y$10$PUUueA6CUT48QqUZqaAZ.ODxh3gLCUSJz/vfLyFmT.kMemBqQVHwK', 'edith@gmail.com', '', 'Edith', 'Novoa', '', '2024-12-08 05:44:43'),
-(6, '10340123', '$2y$10$V8TO7aB0h9U405YXyrmC0uJxMqD7CS/t55yRA4xAKJ282D5vifjpO', 'Nata@gmail.com', 'turismo', 'Jhoneyker', 'Correa', 'mañana', '2024-12-08 06:03:53'),
-(7, '123456789', '$2y$10$p0PX78HRO7VwZinqFUIzoew9lulYp.Vpoj/Va0Ip1DuSBLVDTV9.m', '12@gmail.com', 'turismo', '12', '12', 'noche', '2024-12-08 06:05:57'),
-(8, '222222222', '$2y$10$yHSxnTBI/lGgcAmnOlKXiuS7RKu.ODgpJ/vgXyy3pqvNxNsZ/R9wK', 'marco@gmail.com', 'turismo', 'marco', 'Torres', 'mañana', '2024-12-08 06:08:58'),
-(9, '28180479', '$2y$10$sCOvRwwNFLAicwar3a2Nq.dlyuNkr9QJXV.YZeCCI490448mgkCZ6', 'jhoneykercorrea@gmail.com', 'informatica', 'Jhoneyker', 'Correa', 'noche', '2024-12-08 07:04:46');
+INSERT INTO `users` (`id`, `cedula`, `password`, `email`, `carrera`, `nombres`, `apellidos`, `turno`, `created_at`, `codigo`, `telefono`) VALUES
+(1, '31657336', '$2y$10$HsVZtcwmUCv7T.J1R/5HgOvMMfh7xG/9Znhzj28SN6.Dq9yAJRL4q', 'cristianjcastilloa11@gmail.com', 'informatica', 'Cristian Jesus', 'Castillo Alvarado', 'noche', '2024-12-07 03:06:45', 0, ''),
+(2, '12636266', '$2y$10$AdTzzMjuGb2IA9FIX3B6l.nk.Mfp1NybOuZOHjFz4A/2WG.Hdz8KW', 'marisela@gmail.com', 'turismo', 'marisela', 'alvarado rondon', '', '2024-12-07 03:28:58', 0, ''),
+(3, '11194889', '$2y$10$h9szyIWKVcDXyhwP2NrBEu2v01/SKj92ltNjnAfJIwgybfmSovxp6', 'casticj679@gmail.com', 'administracion', 'julio cesar', 'Castillo garcia', 'noche', '2024-12-07 03:35:34', 0, ''),
+(4, '301116677', '$2y$10$bYTymXI3aJFQVX59F12P/eBq4Hl9NIfl299ZLl7wdjxJ7HZe3nA0u', 'jhonge@gmail.con', 'turismo', 'jhogny', '3243242', 'noche', '2024-12-07 14:33:10', 0, ''),
+(5, '10782818', '$2y$10$PUUueA6CUT48QqUZqaAZ.ODxh3gLCUSJz/vfLyFmT.kMemBqQVHwK', 'edith@gmail.com', '', 'Edith', 'Novoa', '', '2024-12-08 05:44:43', 0, ''),
+(6, '10340123', '$2y$10$V8TO7aB0h9U405YXyrmC0uJxMqD7CS/t55yRA4xAKJ282D5vifjpO', 'Nata@gmail.com', 'turismo', 'Jhoneyker', 'Correa', 'mañana', '2024-12-08 06:03:53', 0, ''),
+(7, '123456789', '$2y$10$p0PX78HRO7VwZinqFUIzoew9lulYp.Vpoj/Va0Ip1DuSBLVDTV9.m', '12@gmail.com', 'turismo', '12', '12', 'noche', '2024-12-08 06:05:57', 0, ''),
+(8, '222222222', '$2y$10$yHSxnTBI/lGgcAmnOlKXiuS7RKu.ODgpJ/vgXyy3pqvNxNsZ/R9wK', 'marco@gmail.com', 'turismo', 'marco', 'Torres', 'mañana', '2024-12-08 06:08:58', 0, ''),
+(9, '28180479', '$2y$10$sCOvRwwNFLAicwar3a2Nq.dlyuNkr9QJXV.YZeCCI490448mgkCZ6', 'jhoneykercorrea@gmail.com', 'informatica', 'Jhoneyker', 'Correa', 'noche', '2024-12-08 07:04:46', 0, ''),
+(11, '31657339', '$2y$10$uwlG6YECOHzAoJqx2YPXy.1isJjAnf1odI1lB7qN7kf72.9C8qta6', 'nacho@gmail.com', 'turismo', 'nacho', 'la criatura bb', 'mañana', '2024-12-15 17:55:15', 1234567, ''),
+(12, '271556583', '$2y$10$mGJXBRSB8z8yNlXa1kjk6OV.9Qnlo/JXAaFrFDMVrx71XIB1Yfafq', 'carlos@gmail.com', 'informatica', 'Carlos', 'Peres', 'noche', '2024-12-15 18:41:22', 1038779, '0424-1958304');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `empresas`
+-- Indexes for table `empresas`
 --
 ALTER TABLE `empresas`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `rif` (`rif`);
 
 --
--- Indices de la tabla `internships`
+-- Indexes for table `internships`
 --
 ALTER TABLE `internships`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indices de la tabla `pasantias`
+-- Indexes for table `pasantias`
 --
 ALTER TABLE `pasantias`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cedula` (`cedula`);
 
 --
--- Indices de la tabla `secretarias`
+-- Indexes for table `secretarias`
 --
 ALTER TABLE `secretarias`
   ADD PRIMARY KEY (`id`),
@@ -164,7 +169,7 @@ ALTER TABLE `secretarias`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indices de la tabla `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -172,51 +177,51 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `empresas`
+-- AUTO_INCREMENT for table `empresas`
 --
 ALTER TABLE `empresas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `internships`
+-- AUTO_INCREMENT for table `internships`
 --
 ALTER TABLE `internships`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `pasantias`
+-- AUTO_INCREMENT for table `pasantias`
 --
 ALTER TABLE `pasantias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `secretarias`
+-- AUTO_INCREMENT for table `secretarias`
 --
 ALTER TABLE `secretarias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `internships`
+-- Constraints for table `internships`
 --
 ALTER TABLE `internships`
   ADD CONSTRAINT `internships_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Filtros para la tabla `pasantias`
+-- Constraints for table `pasantias`
 --
 ALTER TABLE `pasantias`
   ADD CONSTRAINT `pasantias_ibfk_1` FOREIGN KEY (`cedula`) REFERENCES `users` (`cedula`);
