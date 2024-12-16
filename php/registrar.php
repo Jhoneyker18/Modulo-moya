@@ -8,13 +8,12 @@
 </head>
 <body>
 
-    
-<div class="vertical-menu">
-<a href="admin.php" class="active">Inicio</a>
-        <a href="archivos_pasantia1.php">1-Modelo de informacion</a>
-        <a href="panel.php">2-carta de aceptacion</a>
-        <a href="certificado.php">3-certificacion de pasantia</a>
-        <a href="registrar.php">Registrar Estudiante</a>
+    <div class="vertical-menu">
+        <a href="admin.php">Inicio</a>
+        <a href="archivos_pasantia1.php">1-Solicitud de postulación</a>
+        <a href="panel.php">2-Carta de aceptación</a>
+        <a href="certificado.php">3-Certificación de pasantía</a>
+        <a href="registrar.php" class="active">Registrar Estudiante</a>
         <a href="registrar_secret.php">Gestión de Secretarias</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
