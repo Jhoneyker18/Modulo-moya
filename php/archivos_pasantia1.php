@@ -49,7 +49,7 @@ include 'db.php';
     <!-- Contenido principal -->
     <div class="main-content">
         <h1>Insertar los datos del pasante</h1>
-        <form method="POST" action="archivos_pasantia.php" target="_blank">
+        <form method="POST" action="archivos_pasantia1.php" target="_blank">
             <label for="cedula">Cédula:</label>
             <input type="text" id="cedula" name="cedula" onblur="fetchUserData()" required>
             <button type="submit">Solicitar Planilla</button>
@@ -57,8 +57,7 @@ include 'db.php';
             <?php
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $cedula = $_POST['cedula'];
-                echo "<embed src='pdf.php?cedula=$cedula' type='application/pdf' width='110%' height='600px'>";
-                echo "<embed src='certificado_de_pasantia_pdf.php?cedula=$cedula' type='application/pdf' width='110%' height='600px'>";
+                echo "<embed src='pdf.php?cedula=$cedula' type='application/pdf' width='110%' height='600px'>";;
 
 
 } else {

@@ -48,7 +48,7 @@ include 'db.php';
     <!-- Contenido principal -->
     <div class="main-content">
         <h1>Insertar los datos del pasante</h1>
-        <form method="POST" action="archivos_pasantia.php" target="_blank">
+        <form method="POST" action="archivos_pasantia_solicitud.php" target="_blank">
             <label for="cedula">Cédula:</label>
             <input type="text" id="cedula" name="cedula" onblur="fetchUserData()" required>
             <button type="submit">Solicitar Planilla</button>
