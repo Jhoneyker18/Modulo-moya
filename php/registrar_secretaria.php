@@ -45,55 +45,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Barra lateral -->
     <div class="vertical-menu">
-        <a href="admin.php" class="active">Inicio</a>
-        <a href="panel.php">Insertar Planilla</a>
+        <a href="admin.php">Inicio</a>
+        <a href="archivos_pasantia1.php">1-Solicitud de postulación</a>
+        <a href="panel.php">2-Carta de aceptación</a>
+        <a href="certificado.php">3-Certificación de pasantía</a>
         <a href="registrar.php">Registrar Estudiante</a>
-        <a href="registrar_secret.php">Gestión de Secretarias</a>
-        <a href="certificado.php">Certificado Planilla</a>
+        <a href="registrar_secretaria.php" class="active">Registrar Secretarias</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
-
+    <?php if ($error): ?>
+        <p class="error"><?php echo htmlspecialchars($error); ?></p>
+    <?php endif; ?>
+    <?php if ($success): ?>
+        <p class="success"><?php echo htmlspecialchars($success); ?></p>
+    <?php endif; ?>
     <!-- Contenido principal -->
     <div class="content">
         <h2>Registrar Secretaria</h2>
+        <form method="POST">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
 
-        <div class="form-container">
-            <?php if ($error): ?>
-                <p class="error"><?php echo htmlspecialchars($error); ?></p>
-            <?php endif; ?>
-            <?php if ($success): ?>
-                <p class="success"><?php echo htmlspecialchars($success); ?></p>
-            <?php endif; ?>
+            <label for="cedula">Cédula:</label>
+            <input type="text" id="cedula" name="cedula" required>
 
-            <form method="POST">
-                <div class="form-group">
-                    <label for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
 
-                <div class="form-group">
-                    <label for="cedula">Cédula:</label>
-                    <input type="text" id="cedula" name="cedula" required>
-                </div>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
 
-                <div class="form-group">
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+            <label for="confirm_password">Confirmar Contraseña:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
 
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirm_password">Confirmar Contraseña:</label>
-                    <input type="password" id="confirm_password" name="confirm_password" required>
-                </div>
-
-                <button type="submit">Registrar Secretaria</button>
-            </form>
-        </div>
+            <button type="submit">Registrar Secretaria</button>
+        </form>
     </div>
 
 </body>

@@ -5,7 +5,7 @@ if (isset($_GET['cedula'])) {
     $cedula = trim($_GET['cedula']);
 
     // Actualiza la consulta para incluir los nuevos campos
-    $stmt = $pdo->prepare("SELECT nombres, apellidos, carrera, codigo, telefono FROM users WHERE cedula = :cedula");
+    $stmt = $pdo->prepare("SELECT nombres, apellidos, carrera, codigo, turno FROM users WHERE cedula = :cedula");
     $stmt->execute(['cedula' => $cedula]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -17,7 +17,7 @@ if (isset($_GET['cedula'])) {
             'apellidos' => $user['apellidos'],
             'carrera' => $user['carrera'],
             'codigo' => $user['codigo'], 
-            'telefono' => $user['telefono']
+            'turno' => $user['turno']
         ]);
     } else {
         // Mensaje de error si no se encuentra al usuario

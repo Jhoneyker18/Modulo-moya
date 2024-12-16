@@ -1,5 +1,5 @@
 <?php
-require('fpdf/fpdf.php');
+require('libs/fpdf/fpdf.php');
 
 date_default_timezone_set('America/Caracas');
 function formatearNumero($numero) { return number_format($numero, 0, '', '.'); }

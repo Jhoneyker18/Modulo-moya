@@ -37,12 +37,12 @@
 <body>
     <!-- Menú de navegación vertical -->
     <div class="vertical-menu">
-    <a href="admin.php" class="active">Inicio</a>
-        <a href="archivos_pasantia1.php">1-Modelo de informacion</a>
-        <a href="panel.php">2-carta de aceptacion</a>
-        <a href="certificado.php">3-certificacion de pasantia</a>
+        <a href="admin.php">Inicio</a>
+        <a href="archivos_pasantia1.php" class="active">1-Solicitar postulacion</a>
+        <a href="panel.php">2-Carta de aceptación</a>
+        <a href="certificado.php">3-Certificación de pasantía</a>
         <a href="registrar.php">Registrar Estudiante</a>
-        <a href="registrar_secret.php">Gestión de Secretarias</a>
+        <a href="registrar_secretaria.php">Registrar Secretarias</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 
@@ -62,7 +62,7 @@
             <label for="carrera">Carrera:</label>
             <input type="text" id="carrera" name="carrera" required>
 
-            <label for="telefono">Turno:</label>
+            <label for="turno">Turno:</label>
             <input type="text" id="turno" name="turno" required>
 
             <label for="codigo">Código:</label>
