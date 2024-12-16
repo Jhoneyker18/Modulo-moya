@@ -1,5 +1,6 @@
 <?php
 require('fpdf/fpdf.php');
+include 'db.php';
 
 date_default_timezone_set('America/Caracas');
 
