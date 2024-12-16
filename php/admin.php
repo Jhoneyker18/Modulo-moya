@@ -80,6 +80,8 @@ $internships = $stmtInternships->fetchAll(PDO::FETCH_ASSOC);
         <a href="registrar.php">Registrar Estudiante</a>
         <a href="registrar_secret.php">Gestión de Secretarias</a>
         <a href="certificado.php">Certificado Planilla</a>
+        <a href="archivos_pasantia_solicitud.php">Solicitud de Pasantía</a>
+        <a href="archivos_pasantia1.php">Certificado de Pasantía</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 
