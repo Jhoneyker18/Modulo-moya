@@ -13,13 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } 
 
-    if ($cedula === '25881881' && $password === 'moya123') {
-        $_SESSION['user_id'] = $cedula; 
-        header("Location: profesor.php");
-        exit;
-    }
-
-
 
     
     $stmt = $pdo->prepare("SELECT * FROM secretarias WHERE cedula = ?");
@@ -37,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($secretaria && password_verify($password, $secretaria['password'])) {
-        header("Location: home_secretaria.php");
+        header("Location: home_secret.php");
         exit;
     }
 }
