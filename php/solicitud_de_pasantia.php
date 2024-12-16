@@ -26,7 +26,7 @@ $nacionalidad = "V";
 $apellidos1 = convertirAMayusculas($apellido);
 $nombres1 = convertirAMayusculas($nombre);
 $carrera1 = convertirAMayusculas($carrera);
-require('fpdf/fpdf.php');
+require('libs/fpdf/fpdf.php');
 
 $pdf = new FPDF();
 $pdf->AddPage();
