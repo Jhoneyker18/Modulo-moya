@@ -17,15 +17,16 @@
                             document.getElementById('nombre').value = data.nombres;
                             document.getElementById('apellido').value = data.apellidos;
                             document.getElementById('carrera').value = data.carrera;
+                            document.getElementById('turno').value = data.turno;
                             document.getElementById('codigo').value = data.codigo; // Llenar el campo código
-                            document.getElementById('telefono').value = data.telefono; // Llenar el campo teléfono
+
                         } else {
                             alert(data.message);
                             document.getElementById('nombre').value = '';
                             document.getElementById('apellido').value = '';
                             document.getElementById('carrera').value = '';
                             document.getElementById('codigo').value = '';
-                            document.getElementById('telefono').value = '';
+                            document.getElementById('turno').value = '';
                         }
                     })
                     .catch(error => console.error('Error al obtener los datos:', error));
@@ -61,11 +62,13 @@
             <label for="carrera">Carrera:</label>
             <input type="text" id="carrera" name="carrera" required>
 
+            <label for="telefono">Turno:</label>
+            <input type="text" id="turno" name="turno" required>
+
             <label for="codigo">Código:</label>
             <input type="text" id="codigo" name="codigo" required>
 
-            <label for="telefono">Teléfono:</label>
-            <input type="text" id="telefono" name="telefono" required>
+
 
             <button type="submit">Solicitar Planilla</button>
         </form>
