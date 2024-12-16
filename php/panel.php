@@ -71,8 +71,11 @@
     <label for="apellido">Apellidos:</label>
     <input type="text" id="apellido" name="apellido" required>
 
-    <label for="email">Correo Electrónico:</label>
-    <input type="email" id="email" name="email" required>
+    <label for="encargado">Nombre del encargado:</label>
+    <input type="text" id="encargado" name="encargado" required>
+
+    <label for="cargo">Cargo del encargado:</label>
+    <input type="text" id="cargo" name="cargo" required>    
 
     <!-- Botones -->
     <button type="submit">Solicitar Planilla</button>
