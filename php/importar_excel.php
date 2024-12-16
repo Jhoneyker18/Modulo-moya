@@ -24,7 +24,7 @@
                     <li><strong>apellidos</strong> (máximo 50 caracteres)</li>
                     <li><strong>turno</strong> (una de las siguientes: <em>mañana, noche, sábado</em>)</li>
                     <li><strong>codigo</strong> (código numérico único)</li>
-                    <li><strong>telefono</strong> (máximo 12 dígitos,  solo un guion; ejemplo: 0000-0000000)</li>
+                    <li><strong>telefono</strong> (máximo 11 dígitos y un solo guion; ejemplo: 0000-0000000)</li>
                 </ul>
             </li>
             <li>No dejes campos vacíos en ninguna fila.</li>

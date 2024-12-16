@@ -88,17 +88,17 @@ $internships = $stmtInternships->fetchAll(PDO::FETCH_ASSOC);
         <a href="archivos_pasantia_certificado.php">Certificado de Pasantía</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
-
+    <div id="notification" class="notification"></div>
     <div class="content">
         <h2>Estudiantes</h2>
-
-        <div id="notification" class="notification"></div>
     
         <div class="filters">
             <form method="POST" action="importar_excel.php">
                 <h2>Importar tabla de estudiantes</h2>
                 <button type="submit">Importar</button>
             </form>
+        </div>
+        <div class="filters">
             <form method="GET" action="admin.php">
                 <h2>Buscar estudiantes</h2>
                 <input type="text" name="cedula" placeholder="Cédula" value="<?php echo htmlspecialchars($searchCedula); ?>">
