@@ -14,7 +14,7 @@
         <a href="panel.php">2-Carta de aceptación</a>
         <a href="certificado.php">3-Certificación de pasantía</a>
         <a href="registrar.php" class="active">Registrar Estudiante</a>
-        <a href="registrar_secret.php">Gestión de Secretarias</a>
+        <a href="registrar_secretaria.php">Registrar Secretarias</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 
