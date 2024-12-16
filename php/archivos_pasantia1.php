@@ -62,7 +62,7 @@
             <label for="carrera">Carrera:</label>
             <input type="text" id="carrera" name="carrera" required>
 
-            <label for="telefono">Turno:</label>
+            <label for="turno">Turno:</label>
             <input type="text" id="turno" name="turno" required>
 
             <label for="codigo">Código:</label>
