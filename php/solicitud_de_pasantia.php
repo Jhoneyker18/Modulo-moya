@@ -1,10 +1,15 @@
 <?php
-$nombres = isset($_POST['nombres']) ? utf8_decode($_POST['nombres']) : '';
-$cedula = isset($_POST['cedula']) ? utf8_decode($_POST['cedula']) : '';
-$apellidos = isset($_POST['apellidos']) ? utf8_decode($_POST['apellidos']) : '';
-$codigo = isset($_POST['codigo']) ? utf8_decode($_POST['codigo']) : '';
-$turno = isset($_POST['turno']) ? utf8_decode($_POST['turno']) : '';
-$carrera = isset($_POST['carrera']) ? utf8_decode($_POST['carrera']) : '';
+include 'db.php';
+$cedula = $_GET['cedula'];
+$stmt = $pdo->prepare("SELECT nombres, apellidos, codigo, turno, carrera FROM users WHERE cedula = :cedula");
+if($stmt->execute(['cedula' => $cedula])){
+    $row = $stmt->fetch();
+    $nombres = $row['nombres'];
+    $apellidos = $row['apellidos'];
+    $codigo = $row['codigo'];
+    $turno = $row['turno'];
+    $carrera = $row['carrera'];
+}
 if($turno == "mañana"){
     $turno1 = "DIURNO";
 }else{
@@ -27,7 +32,7 @@ require('fpdf/fpdf.php');
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->AliasNbPages(); 
-$pdf->Image('logo.jpg', 15, 5, 20); //logo de la empresa,moverDerecha,moverAbajo,tamañoIMG
+$pdf->Image('3.png', 15, 5, 20); //logo de la empresa,moverDerecha,moverAbajo,tamañoIMG
 $pdf->SetFont('Times', 'B', 8); //tipo fuente, negrita(B-I-U-BIU), tamañoTexto
 $pdf->Cell(25); // Movernos a la derecha
 $pdf->SetTextColor(0, 0, 0); //color
