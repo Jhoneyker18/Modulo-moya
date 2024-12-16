@@ -97,6 +97,8 @@ $internships = $stmtInternships->fetchAll(PDO::FETCH_ASSOC);
                 <h2>Importar tabla de estudiantes</h2>
                 <button type="submit">Importar</button>
             </form>
+        </div>
+        <div class="filters">
             <form method="GET" action="admin.php">
                 <h2>Buscar estudiantes</h2>
                 <input type="text" name="cedula" placeholder="Cédula" value="<?php echo htmlspecialchars($searchCedula); ?>">
