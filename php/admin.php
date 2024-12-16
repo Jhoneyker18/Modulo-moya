@@ -1,7 +1,11 @@
 <?php 
 session_start();
 
-
+if (isset($_GET['import_success']) && $_GET['import_success'] == 'true') {
+    $message = "¡Importación exitosa! Los registros se han insertado correctamente.";
+} else {
+    $message = '';
+}
 if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] != '123456789') {
     header("Location: index.php");
     exit;
@@ -73,7 +77,6 @@ $internships = $stmtInternships->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-    
     <div class="vertical-menu">
         <a href="admin.php" class="active">Inicio</a>
         <a href="panel.php">Insertar Planilla</a>
@@ -86,13 +89,18 @@ $internships = $stmtInternships->fetchAll(PDO::FETCH_ASSOC);
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 
-
     <div class="content">
         <h2>Estudiantes</h2>
 
+        <div id="notification" class="notification"></div>
     
         <div class="filters">
+            <form method="POST" action="importar_excel.php">
+                <h2>Importar tabla de estudiantes</h2>
+                <button type="submit">Importar</button>
+            </form>
             <form method="GET" action="admin.php">
+                <h2>Buscar estudiantes</h2>
                 <input type="text" name="cedula" placeholder="Cédula" value="<?php echo htmlspecialchars($searchCedula); ?>">
                 <input type="text" name="name" placeholder="Nombre o Apellido" value="<?php echo htmlspecialchars($searchName); ?>">
                 <input type="email" name="email" placeholder="Correo electrónico" value="<?php echo htmlspecialchars($searchEmail); ?>">
@@ -125,6 +133,18 @@ $internships = $stmtInternships->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     </div>
-
+    <script>
+        window.onload = function() {
+            const message = '<?php echo $message; ?>';
+            if (message) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 5000); // Ocultar después de 5 segundos
+            }
+        };
+    </script>
 </body>
 </html>
