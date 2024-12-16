@@ -42,7 +42,7 @@ $texto = 'Quien suscribe, MSc. Nahmens de Gonzales, Directora del INSTITUTO UNIV
 hace constar por medio de la presente, que el (la) BR. ' . $nombre . ' ' . $apellido . ', titular de la Cédula de Identidad N° ' . $cedula . 
 ', cursó y aprobó pasantía durante el semestre actual en la especialidad de ' . $carrera . 
 ', mencionando que realizó las mismas en la empresa o institución ' . $empresa . 
-' con una duración de 240 horas, donde cumplió satisfactoriamente con las actividades asignadas, obteniendo una clasificación de puntos.';
+' con una duración de 240 horas, donde cumplió satisfactoriamente con las actividades asignadas, obteniendo una clasificación de (_ _) puntos.';
 $pdf->MultiCell(0, 7, utf8_decode($texto), 0, 'J');
 
 $pdf->Ln(20);
