@@ -79,26 +79,24 @@ $internships = $stmtInternships->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="vertical-menu">
         <a href="admin.php" class="active">Inicio</a>
-        <a href="panel.php">Insertar Planilla</a>
+        <a href="archivos_pasantia1.php">1-Modelo de informacion</a>
+        <a href="panel.php">2-carta de aceptacion</a>
+        <a href="certificado.php">3-certificacion de pasantia</a>
         <a href="registrar.php">Registrar Estudiante</a>
         <a href="registrar_secret.php">Gestión de Secretarias</a>
-        <a href="certificado.php">Certificado Planilla</a>
-        <a href="archivos_pasantia_solicitud.php">Solicitud de Pasantía</a>
-        <a href="archivos_pasantia_carta.php">Carta de Pasantía</a>
-        <a href="archivos_pasantia_certificado.php">Certificado de Pasantía</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
-    <div id="notification" class="notification"></div>
+
     <div class="content">
         <h2>Estudiantes</h2>
+
+        <div id="notification" class="notification"></div>
     
         <div class="filters">
             <form method="POST" action="importar_excel.php">
                 <h2>Importar tabla de estudiantes</h2>
                 <button type="submit">Importar</button>
             </form>
-        </div>
-        <div class="filters">
             <form method="GET" action="admin.php">
                 <h2>Buscar estudiantes</h2>
                 <input type="text" name="cedula" placeholder="Cédula" value="<?php echo htmlspecialchars($searchCedula); ?>">

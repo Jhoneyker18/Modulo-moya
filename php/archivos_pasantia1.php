@@ -36,18 +36,19 @@
 <body>
     <!-- Menú de navegación vertical -->
     <div class="vertical-menu">
-        <a href="admin.php" class="active">Inicio</a>
-        <a href="panel.php">Insertar Planilla</a>
+    <a href="admin.php" class="active">Inicio</a>
+        <a href="archivos_pasantia1.php">1-Modelo de informacion</a>
+        <a href="panel.php">2-carta de aceptacion</a>
+        <a href="certificado.php">3-certificacion de pasantia</a>
         <a href="registrar.php">Registrar Estudiante</a>
         <a href="registrar_secret.php">Gestión de Secretarias</a>
-        <a href="certificado.php">Certificado Planilla</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 
     <!-- Contenido principal -->
     <div class="main-content">
         <h1>Insertar los datos del pasante</h1>
-        <form method="POST" action="archivos_pasantia_solicitud.php" target="_blank">
+        <form method="POST" action="solicitud_de_pasantia.php" target="_blank">
             <label for="cedula">Cédula:</label>
             <input type="text" id="cedula" name="cedula" onblur="fetchUserData()" required>
             

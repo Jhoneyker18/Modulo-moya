@@ -23,11 +23,12 @@ $secretarias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Barra lateral -->
     <div class="vertical-menu">
-        <a href="admin.php" class="active">Inicio</a>
-        <a href="panel.php">Insertar Planilla</a>
+    <a href="admin.php" class="active">Inicio</a>
+        <a href="archivos_pasantia1.php">1-Modelo de informacion</a>
+        <a href="panel.php">2-carta de aceptacion</a>
+        <a href="certificado.php">3-certificacion de pasantia</a>
         <a href="registrar.php">Registrar Estudiante</a>
         <a href="registrar_secret.php">Gestión de Secretarias</a>
-        <a href="certificado.php">Certificado Planilla</a>
         <a href="logout.php">Cerrar Sesión</a>
     </div>
 

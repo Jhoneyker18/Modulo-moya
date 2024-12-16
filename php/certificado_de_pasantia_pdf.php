@@ -1,20 +1,13 @@
 <?php
 require('fpdf/fpdf.php');
-include 'db.php';
 
 date_default_timezone_set('America/Caracas');
 
-$cedula = $_GET['cedula'];
-$stmt = $pdo->prepare("SELECT nombres, apellidos, codigo, turno, carrera FROM users WHERE cedula = :cedula");
-if($stmt->execute(['cedula' => $cedula])){
-    $row = $stmt->fetch();
-    $nombres = $row['nombres'];
-    $apellidos = $row['apellidos'];
-    $codigo = $row['codigo'];
-    $turno = $row['turno'];
-    $carrera = $row['carrera'];
-}
-$empresa = isset($_POST['empresa']) ? $_POST['empresa'] : '';
+$nombre = isset($_POST['nombre']) ? utf8_decode($_POST['nombre']) : '';
+$cedula = isset($_POST['cedula']) ? utf8_decode($_POST['cedula']) : '';
+$apellido = isset($_POST['apellido']) ? utf8_decode($_POST['apellido']) : '';
+$carrera = isset($_POST['carrera']) ? utf8_decode($_POST['carrera']) : '';
+$empresa = isset($_POST['empresa']) ? utf8_decode($_POST['empresa']) : '';
 
 
 setlocale(LC_TIME, 'es_ES.UTF-8', 'es_ES', 'Spanish_Spain.1252');
@@ -46,10 +39,10 @@ $pdf->Line(70, $pdf->GetY(), 140, $pdf->GetY()); // Subrayar el título
 $pdf->SetFont('Arial', '', 11);
 $pdf->Ln(10);
 $texto = 'Quien suscribe, MSc. Nahmens de Gonzales, Directora del INSTITUTO UNIVERSITARIO DE TECNOLOGÍA VENEZUELA, 
-hace constar por medio de la presente, que el (la) BR. ' . $nombres . ' ' . $apellidos . ', titular de la Cédula de Identidad N° ' . $cedula . 
+hace constar por medio de la presente, que el (la) BR. ' . $nombre . ' ' . $apellido . ', titular de la Cédula de Identidad N° ' . $cedula . 
 ', cursó y aprobó pasantía durante el semestre actual en la especialidad de ' . $carrera . 
 ', mencionando que realizó las mismas en la empresa o institución ' . $empresa . 
-' con una duración de 240 horas, donde cumplió satisfactoriamente con las actividades asignadas, obteniendo una clasificación de puntos.';
+' con una duración de 240 horas, donde cumplió satisfactoriamente con las actividades asignadas, obteniendo una clasificación (_ _) de puntos.';
 $pdf->MultiCell(0, 7, utf8_decode($texto), 0, 'J');
 
 $pdf->Ln(20);
