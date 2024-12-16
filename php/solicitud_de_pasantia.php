@@ -1,195 +1,104 @@
 <?php
-include 'db.php';
-$cedula = $_GET['cedula'];
-$stmt = $pdo->prepare("SELECT nombres, apellidos, codigo, turno, carrera FROM users WHERE cedula = :cedula");
-if($stmt->execute(['cedula' => $cedula])){
-    $row = $stmt->fetch();
-    $nombres = $row['nombres'];
-    $apellidos = $row['apellidos'];
-    $codigo = $row['codigo'];
-    $turno = $row['turno'];
-    $carrera = $row['carrera'];
-}
-if($turno == "mañana"){
-    $turno1 = "DIURNO";
-}else{
-    $turno1 = "NOCTURNO";
-}
-function formatearNumero($numero) { return number_format($numero, 0, '', '.'); }
-$cedula1 = formatearNumero($cedula);
-$codigo1 = formatearNumero($codigo);
-function convertirAMayusculas($palabra) { return strtoupper($palabra); }
-if($cedula > 80000000){
-$nacionalidad = "E";
-}else{
-$nacionalidad = "V";
-}
-$apellidos1 = convertirAMayusculas($apellidos);
-$nombres1 = convertirAMayusculas($nombres);
-$carrera1 = convertirAMayusculas($carrera);
+
 require('fpdf/fpdf.php');
 
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->AliasNbPages(); 
-$pdf->Image('3.png', 15, 5, 20); //logo de la empresa,moverDerecha,moverAbajo,tamañoIMG
-$pdf->SetFont('Times', 'B', 8); //tipo fuente, negrita(B-I-U-BIU), tamañoTexto
-$pdf->Cell(25); // Movernos a la derecha
-$pdf->SetTextColor(0, 0, 0); //color
-$pdf->Cell(0, 0, utf8_decode('REPÚBLICA BOLIVARIANA DE VENEZUELA'), 0, 1, '', 0);
-$pdf->Ln(5); 
-$pdf->Cell(25);
-$pdf->Cell(0, 0, utf8_decode('MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN UNIVERSITARIA'), 0, 1, '', 0);
-$pdf->Ln(5); 
-$pdf->Cell(25);
-$pdf->Cell(0, 0, utf8_decode('INSTITUTO UNIVERSITARIO DE TECNOLOGÍA VENEZUELA'), 0, 1, '', 0);
 
+// Agregar logo
+$pdf->Image('3.png', 15, 5, 20); // logo: ruta, x, y, tamaño
+
+// Encabezado
+$pdf->SetFont('Times', 'B', 8); // fuente: tipo, estilo, tamaño
+$pdf->SetTextColor(0, 0, 0); // color del texto negro
+$pdf->Cell(25); // margen izquierdo
+$pdf->Cell(0, 0, utf8_decode('REPÚBLICA BOLIVARIANA DE VENEZUELA'), 0, 1, 'C');
+$pdf->Ln(5); 
+$pdf->Cell(25);
+$pdf->Cell(0, 0, utf8_decode('MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN UNIVERSITARIA'), 0, 1, 'C');
+$pdf->Ln(5); 
+$pdf->Cell(25);
+$pdf->Cell(0, 0, utf8_decode('INSTITUTO UNIVERSITARIO DE TECNOLOGÍA VENEZUELA'), 0, 1, 'C');
+
+// Título principal
 $pdf->SetFont('Arial', '', 18);
 $pdf->Ln(20); 
-$pdf->Cell(-10);
-$pdf->Cell(0, 0, utf8_decode('MODELO'), 0, 1, 'C', 0);
-$pdf->Cell(20);
+$pdf->Cell(0, 10, utf8_decode('MODELO'), 0, 1, 'C');
 $pdf->SetFont('Arial', 'I', 18);
-$pdf->Ln(7); 
-$pdf->Cell(55);
-$pdf->Cell(0, 0, utf8_decode('INFORMACION PARA'), 0, 1, '', 0);
-$pdf->Ln(7); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('SOLICITAR LA POSTULACION A PASANTIAS'), 0, 1, '', 0);
+$pdf->Ln(5);
+$pdf->Cell(0, 10, utf8_decode('INFORMACIÓN PARA'), 0, 1, 'C');
+$pdf->Cell(0, 10, utf8_decode('SOLICITAR LA POSTULACIÓN A PASANTÍAS'), 0, 1, 'C');
+
+// Sección: Datos del estudiante
 $pdf->SetFont('Arial', 'BIU', 11);
 $pdf->Ln(15); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('DATOS DEL ESTUDIANTE'), 0, 1, '', 0);
+$pdf->Cell(0, 10, utf8_decode('DATOS DEL ESTUDIANTE'), 0, 1, 'L');
 $pdf->SetFont('Arial', 'I', 10);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('APELLIDOS Y NOMBRES________________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('CARRERA:________________________________________CODIGO:____________________'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('Nº DE CEDULA DE IDENTIDAD:____________________________TURNO:________________'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('Nº DE TELEFONO:____________________________MOVIL:____________________________'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('CORREO ELECTRONICO:________________________________________________________'), 0, 1, '', 0);
-$pdf->SetFont('Arial', 'BIU', 11);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('DATOS DE LA EMPRESA SELECCIONADA'), 0, 1, '', 0);
-$pdf->SetFont('Arial', 'I', 10);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('NOMBRE DE LA EMPRESA________________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('DIRECCION:____________________________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('Nº DE TELEFONO:_______________________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('RIF:___________________________________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('APELLIDOS Y NOMBRES Y CARGO DE LA PERSONA A QUIEN LE SERA DRIJIDA'), 0, 1, '', 0);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('LA CARTA DE POSTULACION:_____________________________________________________'), 0, 1, '', 0);
-$pdf->SetFont('Arial', 'BI', 10);
-$pdf->Ln(15); 
-$pdf->Cell(25);
-$pdf->Cell(0, 0, utf8_decode('ANEXAR A ESTA SOLICITUD'), 0, 1, '', 0);
-$pdf->SetFont('Arial', 'I', 9);
-$pdf->Ln(10); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('-    Una copia de la Cedula de Identidad vigente y legible'), 0, 1, '', 0);
 $pdf->Ln(5); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('-    Una copia del recibo de inscripción'), 0, 1, '', 0);
-$pdf->Ln(15); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('FIRMA                                                                                                        FECHA'), 0, 1, '', 0);
-$pdf->Ln(20); 
-$pdf->Cell(20);
-$pdf->Cell(0, 0, utf8_decode('___________________________                                                           ___________________________'), 0, 1, '', 0);
+$pdf->MultiCell(0, 8, utf8_decode('APELLIDOS Y NOMBRES: ________________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('CARRERA: ______________________________________ CÓDIGO: ____________'));
+$pdf->MultiCell(0, 8, utf8_decode('Nº DE CÉDULA DE IDENTIDAD: _________________ TURNO: ________________'));
+$pdf->MultiCell(0, 8, utf8_decode('Nº DE TELÉFONO: _________________ MÓVIL: ____________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('CORREO ELECTRÓNICO: ________________________________________________'));
+
+// Sección: Datos de la empresa seleccionada
+$pdf->SetFont('Arial', 'BIU', 11);
+$pdf->Ln(10); 
+$pdf->Cell(0, 10, utf8_decode('DATOS DE LA EMPRESA SELECCIONADA'), 0, 1, 'L');
+$pdf->SetFont('Arial', 'I', 10);
+$pdf->Ln(5); 
+$pdf->MultiCell(0, 8, utf8_decode('NOMBRE DE LA EMPRESA: _____________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('DIRECCIÓN: _________________________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('Nº DE TELÉFONO: ____________________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('RIF: _______________________________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('APELLIDOS Y NOMBRES Y CARGO DE LA PERSONA A QUIEN LE SERÁ DIRIGIDA'));
+$pdf->MultiCell(0, 8, utf8_decode('LA CARTA DE POSTULACIÓN: ____________________________________________'));
+
+// Anexos requeridos
+$pdf->SetFont('Arial', 'BI', 10);
+$pdf->Ln(10); 
+$pdf->Cell(0, 10, utf8_decode('ANEXAR A ESTA SOLICITUD'), 0, 1, 'L');
+$pdf->SetFont('Arial', 'I', 9);
+$pdf->Ln(5); 
+$pdf->MultiCell(0, 6, utf8_decode('- Una copia de la Cédula de Identidad vigente y legible.'));
+$pdf->MultiCell(0, 6, utf8_decode('- Una copia del recibo de inscripción.'));
+
+$pdf->SetFont('Arial', '', 10);
+$pdf->Ln(10); 
+$pdf->MultiCell(0, 8, utf8_decode('FIRMA: ______________________________           FECHA: ____________________________'));
+
+// Sección: Tutor Empresarial
 $pdf->SetFont('Arial', 'BU', 12);
-$pdf->Ln(50); 
-$pdf->Cell(20);
-$pdf->Ln(20); 
-$pdf->Cell(0, 0, utf8_decode('TUTOR EMPRESARIAL'), 0, 1, 'C', 0);
+$pdf->Ln(30); 
+$pdf->Cell(0, 10, utf8_decode('TUTOR EMPRESARIAL'), 0, 1, 'C');
 $pdf->SetFont('Arial', '', 10);
-$pdf->Ln(10);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('APELLIDOS Y NOMBRES: ____________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('CARGO EN LA EMPRESA: ____________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('NOMBRE DE LA EMPRESA: ___________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('DIRECCION: ________________________________________________________________'), 0, 1, '', 0);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('TELEFONOS: ____________________________________________________'), 0, 1, '', 0);
+$pdf->Ln(10); 
+$pdf->MultiCell(0, 8, utf8_decode('APELLIDOS Y NOMBRES: ________________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('CARGO EN LA EMPRESA: ________________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('NOMBRE DE LA EMPRESA: ______________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('DIRECCIÓN: _________________________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('TELÉFONOS: _________________________________________________________'));
+
+// Sección: Datos del pasante
 $pdf->SetFont('Arial', 'BU', 12);
-$pdf->Ln(20);
-$pdf->Cell(3);
-$pdf->Cell(0, 0, utf8_decode('DATOS DEL PASANTE'), 0, 1, 'C', 0);
+$pdf->Ln(20); 
+$pdf->Cell(0, 10, utf8_decode('DATOS DEL PASANTE'), 0, 1, 'C');
 $pdf->SetFont('Arial', '', 10);
-$pdf->Ln(10);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('APELLIDOS Y NOMBRES: '), 0, 1, '', 0);
+$pdf->Ln(10); 
+$pdf->MultiCell(0, 8, utf8_decode('APELLIDOS Y NOMBRES: ________________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('CÉDULA DE IDENTIDAD: __________________ CÓDIGO: ________________'));
+$pdf->MultiCell(0, 8, utf8_decode('CARRERA: ____________________________________________'));
+$pdf->MultiCell(0, 8, utf8_decode('FECHA INICIO DE PASANTÍAS: _________ FECHA DE CULMINACIÓN: ___________'));
+$pdf->MultiCell(0, 8, utf8_decode('MEDIO TIEMPO:_____________ TIEMPO COMPLETO:_____________'));
+
+// Notas
 $pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(64);
-$pdf->Cell(0, 0, utf8_decode($apellidos1.', '.$nombres1), 0, 1, '', 0);
-$pdf->SetFont('Arial', '', 10);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('CEDULA DE IDENTIDAD:                          CODIGO:                   TURNO           '), 0, 1, '', 0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(62);
-$pdf->Cell(0, 0, utf8_decode($nacionalidad.' - '.$cedula1), 0, 1, '', 0);
-$pdf->Cell(103);
-$pdf->Cell(0, 0, utf8_decode($codigo1), 0, 1, '', 0);
-$pdf->Cell(135);
-$pdf->Cell(0, 0, utf8_decode('('.$turno1.')'), 0, 1, '', 0);
-$pdf->SetFont('Arial', '', 10);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('CARRERA:'), 0, 1, '', 0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(40);
-$pdf->Cell(0, 0, utf8_decode($carrera1), 0, 1, '', 0);
-$pdf->SetFont('Arial', '', 10);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('FECHA INICIO DE PASANTIAS: _________ FECHA DE CULMINACIÓN: ___________'), 0, 1, '', 0);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('MEDIO TIEMPO:_____________ TIEMPO COMPLETO:_____________'), 0, 1, '', 0);
-$pdf->SetFont('Arial', 'BU', 10);
-$pdf->Ln(20);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('NOTA: LA MODALIDAD DE TIEMPO COMPLETO:'), 0, 1, '', 0);
-$pdf->SetFont('Arial', '', 10);
-$pdf->Cell(102); 
-$pdf->Cell(0, 0, utf8_decode('SEIS (6) SEMANAS DIAS HABILES, LOS'), 0, 1, '', 0);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('ALUMNOS DEL TURNO DE LA NOCHE Y LOS DE LA MAÑANA DEBEN REALIZAR LAS'), 0, 1, '', 0);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('PASANTIAS EN NUEVE (9) SEAMANAS PARA CUBRIR LOS DIAS DE CLASE '), 0, 1, '', 0);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->Ln(7);
-$pdf->Cell(20); 
-$pdf->Cell(0, 0, utf8_decode('(TOTAL DE HORAS 240)'), 0, 1, '', 0);
-$pdf->SetDrawColor(163, 163, 163); 
-$pdf->Output('Pasantia '.$apellidos1.', '.$nombres1.'.pdf', 'I');
+$pdf->Ln(10); 
+$pdf->MultiCell(0, 8, utf8_decode('NOTA: LA MODALIDAD DE TIEMPO COMPLETO DEBE CUMPLIR SEIS (6) SEMANAS DÍAS HÁBILES. PARA ALUMNOS DE TURNO NOCHE O MAÑANA, EL PERIODO DE PASANTÍAS ES DE NUEVE (9) SEMANAS PARA CUBRIR LOS DÍAS DE CLASE.'));
+$pdf->MultiCell(0, 8, utf8_decode('(TOTAL DE HORAS: 240)'));
+
+// Salida del PDF
+$pdf->Output('I', 'Solicitud_Pasantias.pdf');
+
 ?>
